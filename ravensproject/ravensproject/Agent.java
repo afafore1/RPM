@@ -1,7 +1,6 @@
 package ravensproject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 // Uncomment these lines to access image processing.
 //import java.awt.Image;
@@ -76,7 +75,7 @@ public class Agent {
 				HashMap<String, RavensObject> bObject = _ravensFigure_b.getObjects();
 				HashMap<String, RavensObject> cObject = _ravensFigure_c.getObjects();
 
-				CompareObjects(aObject, bObject);
+				CompareObjects(aObject, bObject, cObject);
 				
 //				ArrayList<RavensObject> ravensObject_a = GetRavensObject(aObject);
 //				ArrayList<RavensObject> ravensObject_b = GetRavensObject(bObject);
@@ -91,10 +90,11 @@ public class Agent {
 		return -1;
 	}
 
-	private void CompareObjects(HashMap<String, RavensObject> aObject, HashMap<String, RavensObject> bObject)
+	private void CompareObjects(HashMap<String, RavensObject> aObject, HashMap<String, RavensObject> bObject, HashMap<String, RavensObject> cObject)
 	{
 		HashMap<String, String> attr_a = new HashMap<>();
 		HashMap<String, String> attr_b = new HashMap<>();
+		HashMap<String, String> attr_c = new HashMap<>();
 		
 		for(String s : aObject.keySet())
 		{
@@ -112,10 +112,37 @@ public class Agent {
 			System.out.println(attr_b);
 		}
 		
-		if(attr_a.keySet().size() == 1)
+		for(String s : cObject.keySet())
 		{
-			System.out.println("this is 1 for ");
+			System.out.print("key "+s+" -> ");
+			RavensObject srObject = cObject.get(s);
+			attr_c = srObject.getAttributes();
+			System.out.println(attr_c);
 		}
+		
+		Set<String> keysetA = attr_a.keySet();
+		Set<String> keysetB = attr_b.keySet();
+		Set<String> keysetC = attr_c.keySet();
+		
+		for (String keyA : keysetA){
+			for (String keyB: keysetB){
+				if(keyA.equals(keyB)){
+					String valueA = attr_a.get(keyA);
+					String valueB = attr_b.get(keyB);
+					
+					if (valueA.equals(valueB)){
+						//save that object A and B have the same value for this attribute
+					}
+					
+					else{
+						//save that object A and B DO NOT have the same value for this attribute
+					}
+					
+					break;
+				}
+			}
+		}
+		
 	}
 //	private ArrayList<RavensObject> GetRavensObject(HashMap<String, RavensObject> obj) {
 //		ArrayList<RavensObject> rList = new ArrayList<>();
