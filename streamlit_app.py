@@ -43,15 +43,32 @@ def get_image(selection, current_index, problems):
     curr_selection = problems[current_index]
 
     return Image.open(f'Problems/{selection}/{curr_selection}/{curr_selection}.PNG')
+# def calculate_answer(selection, curr_selection):
+#     if 'usr_ans' in st.session_state:
+#         ans = get_answer(f'Problems/{selection}/{curr_selection}')
+#         if st.session_state.usr_ans == ans:
+#             st.success('You selected the correct answer!')
+#         else:
+#             st.error('Wrong answer selected.')
 
 
-def calculate_answer(selection, curr_selection):
-    if 'usr_ans' in st.session_state:
-        ans = get_answer(f'Problems/{selection}/{curr_selection}')
-        if st.session_state.usr_ans == ans:
-            st.success('You selected the correct answer!')
-        else:
-            st.error('Wrong answer selected.')
+def get_selection_title(selection):
+    return selection.title().replace(" ", "_")
+
+
+def calculate_answer(usr_ans, selection, curr_selection):
+    selection_title = get_selection_title(selection)
+    if st.session_state.get(selection_title) is None:
+        st.session_state[selection_title] = [0, 0]
+
+    ans = get_answer(f'Problems/{selection}/{curr_selection}')
+    if usr_ans == ans:
+        st.session_state[selection_title][0] += 1
+        st.success(f'Correct answer selected for {curr_selection}!')
+    else:
+        st.error(f'Wrong answer selected for {curr_selection}')
+    st.session_state[selection_title][1] += 1
+    st.write(f'{st.session_state[selection_title][0]} / {st.session_state[selection_title][1]}')
 
 
 def present_question(problems, selection):
@@ -63,11 +80,7 @@ def present_question(problems, selection):
     usr_ans = answer_placeholder.selectbox(f'Please select an answer for {curr_selection}',
                                            get_options_for_problem(f'Problems/{selection}/{curr_selection}'))
     if len(usr_ans) > 0:
-        ans = get_answer(f'Problems/{selection}/{curr_selection}')
-        if usr_ans == ans:
-            st.success(f'Correct answer selected for {curr_selection}!')
-        else:
-            st.error(f'Wrong answer selected for {curr_selection}')
+        calculate_answer(usr_ans, selection, curr_selection)
         move_to_next_question(problems, selection)
 
 
@@ -81,6 +94,10 @@ def move_to_next_question(problems, selection):
 
 def clear_current_index():
     st.session_state.current_index = 0
+
+
+# def display_selection_result():
+#     st.write(f'{st.session_state.selection_title[0]} / {st.session_state.selection_title[1]}')
 
 
 st.title('Ravens Progressive Matrix Test')
