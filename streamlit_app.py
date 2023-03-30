@@ -98,7 +98,8 @@ def move_to_next_question(problems, selection):
     if st.session_state['current_index'] < len(problems):
         present_question(problems, selection)
     else:
-        next_question_placeholder.success(f'{selection} completed. Please select another problem set')
+        next_question_placeholder.success(f'{selection} completed. Please select another problem set from the top '
+                                          f'left corner')
         total_score = 100 * (len(selection) - len(st.session_state.missed_questions)) / len(selection)
         clear_placeholders(selection)
         caption_placeholder.caption(f'Your total score was {total_score}%')
