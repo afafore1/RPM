@@ -72,6 +72,8 @@ def present_question(problems, selection):
         st.session_state['missed_questions'] = set()
     if 'ans_disabled' not in st.session_state:
         st.session_state['ans_disabled'] = False
+    if st.session_state.current_index == len(problems):
+        st.session_state.current_index = len(problems) - 1
 
     img = get_image(selection, st.session_state['current_index'], problems)
     curr_selection = problems[st.session_state['current_index']]
