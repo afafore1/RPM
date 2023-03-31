@@ -102,7 +102,7 @@ def move_to_next_question(problems, selection):
                                           f'left corner')
         total_score = 100 * (len(selection) - len(st.session_state.missed_questions)) / len(selection)
         clear_placeholders(selection)
-        caption_placeholder.caption(f'Your total score was {total_score}%')
+        caption_placeholder.subheader(f'Your total score was {total_score}%')
 
 
 def clear_placeholders(selection):
