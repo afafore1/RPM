@@ -121,7 +121,7 @@ def clear_current_index():
 def main():
     title_placeholder.title('Ravens Progressive Matrix Test')
     caption_placeholder.caption(
-        "The objective of **Raven's Progressive Matrices** is to measure general cognitive ability or "
+        "The objective of the **Raven's Progressive Matrices** is to measure general cognitive ability or "
         "intelligence, "
         "particularly in the areas of **abstract reasoning _and_ problem-solving**. The test consists of a series "
         "of **visual puzzles**, with each puzzle consisting of a matrix of geometric shapes with one shape missing.")
