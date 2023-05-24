@@ -6,9 +6,17 @@
   "customizations": {
     "codespaces": {
       "openFiles": [
-        "README.md",
         "streamlit_app.py"
       ]
+    }
+  },
+  "postAttachCommand": {
+    "server": "streamlit run streamlit_app.py"
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
     }
   }
 }
