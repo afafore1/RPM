@@ -15,7 +15,7 @@
     "server": "streamlit run streamlit_app.py"
   },
   "portsAttributes": {
-    "3000": {
+    "8501": {
       "label": "Application",
       "onAutoForward": "openPreview"
     }
