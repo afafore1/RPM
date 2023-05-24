@@ -10,6 +10,7 @@
       ]
     }
   },
+  "postCreateCommand": "pip3 install --user -r requirements.txt",
   "postAttachCommand": {
     "server": "streamlit run streamlit_app.py"
   },
