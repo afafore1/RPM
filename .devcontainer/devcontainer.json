@@ -12,7 +12,7 @@
   },
   "postCreateCommand": "pip3 install --user -r requirements.txt",
   "postAttachCommand": {
-    "server": "streamlit run streamlit_app.py"
+    "server": "streamlit run streamlit_app.py --server.enableCORS false --server.enableXsrfProtection false"
   },
   "portsAttributes": {
     "8501": {
